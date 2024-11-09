@@ -1,0 +1,33 @@
+syntax = "proto3";
+package recipe;
+service RecipeService{
+    rpc GetRecipe(RecipeRequest) returns (Recipe){}
+    rpc GetMetaData(Empty) returns (Meta){}
+}
+
+//the response to the client. The response should have this structure.
+message Recipe{
+    int32 id = 1;
+    string name = 2;
+    string steps = 3;
+    repeated Ingredient ingredients = 4;
+}
+
+message Ingredient{
+    int32 id = 1;
+    string name = 2;
+    string quantity = 3;
+}
+
+//the request to the server. The request should have this structure.
+message RecipeRequest{
+    int32 id = 1;
+}
+
+//the response to the client. The response should have this structure.
+message Meta{
+    int32 pid = 2;
+}
+
+//the request to the server. The request should have this structure.
+message Empty{}
